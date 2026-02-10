@@ -17,7 +17,6 @@
       overflow-y: auto;
     }
 
-
     .card {
       margin: 50px 0;
       background: white;
@@ -44,7 +43,6 @@
       margin-bottom: 15px;
       background: #fce4ec;
     }
-
 
     h1 {
       color: #ff4d6d;
@@ -126,8 +124,6 @@
       "Реших да заложа на любовта. Омразата е твърде тежко бреме за носене. – Мартин Лутър Кинг"
     ];
 
-    // ✅ ТУК СЛАГАШ ТВОИТЕ PNG/JPG СНИМКИ (пътища към файловете)
-    // Пример: images/love1.png, images/love2.png ...
     const images = [
       "image1.png",
       "image2.png",
@@ -135,6 +131,9 @@
       "image4.png",
       "image5.png"
     ];
+
+    const SPECIAL_OPEN_NUMBER = 50; 
+    const specialText = "Вече е Свети Валентин, а ти още си нямаш валентинка!";
 
     function randomIndex(max) {
       return Math.floor(Math.random() * max);
@@ -146,15 +145,24 @@
     }
 
     function showWish() {
-      document.getElementById("message").textContent =
-        wishes[randomIndex(wishes.length)];
+      const key = "openCount";
+      let openCount = Number(localStorage.getItem(key) || "0") + 1;
 
-      // По желание: като натиснеш бутона да сменя и снимката
+      if (openCount === SPECIAL_OPEN_NUMBER) {
+        document.getElementById("message").textContent = specialText;
+        localStorage.setItem(key, "0"); 
+      } else {
+        document.getElementById("message").textContent = wishes[randomIndex(wishes.length)];
+        localStorage.setItem(key, String(openCount));
+      }
+
+
+      // сменяме снимката при всяко отваряне и при натискане на бутона
       showImage();
     }
 
-    showWish();  
-    
+    // при зареждане (сканиране / refresh)
+    showWish();
 
     // Falling hearts
     setInterval(() => {
