@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💖 Свети Валентин</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      max-width: 350px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      animation: pop 0.6s ease;
+      z-index: 2;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 15px;
+    }
+
+    #message {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    button {
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e63950;
+      transform: scale(1.05);
+    }
+
+    /* Hearts animation */
+    .heart {
+      position: absolute;
+      top: -20px;
+      font-size: 20px;
+      animation: fall linear forwards;
+      color: rgba(255,255,255,0.8);
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <!-- 🔽 СНИМКА -->
+    <img src="image.jpg" alt="Love photo" class="photo" />
+
+    <h1>💖 Честит Свети Валентин</h1>
+    <div id="message"></div>
+    <button onclick="showWish()">💌 Покажи друго пожелание</button>
+  </div>
+
+  <script>
+    const wishes = [
+      "Обичам те повече с всеки изминал ден 💕",
+      "Ти си причината сърцето ми да се усмихва ❤️",
+      "С теб всеки ден е празник 💖",
+      "Ти си моето всичко 💘",
+      "Любовта ни е най-красивият подарък 💝",
+      "С теб светът е по-красив 🌹",
+      "Винаги избирай любовта – избирай нас 💞"
+    ];
+
+    function showWish() {
+      const randomIndex = Math.floor(Math.random() * wishes.length);
+      document.getElementById("message").textContent = wishes[randomIndex];
+    }
+
+    showWish();
+
+    // Falling hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }, 300);
+  </script>
+
+</body>
+</html>
