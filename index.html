@@ -9,6 +9,7 @@
     html {
       min-height: 100%;
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      background-attachment: fixed;
     }
 
     body {
@@ -20,6 +21,7 @@
       align-items: flex-start;
       overflow-y: auto;
       background: transparent; /* ключов ред */
+      overscroll-behavior: none;
     }
 
 
@@ -103,7 +105,6 @@
 
     <h1>💖 Честит Свети Валентин</h1>
     <div id="message"></div>
-    <button onclick="showWish()">💌 Покажи друго пожелание</button>
   </div>
 
   <script>
